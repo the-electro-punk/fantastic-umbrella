@@ -1,13 +1,15 @@
 const express = require('express');
 const routes = require('./routes');
 
+let products = require('./seeds/product-seeds.js')
+
 // this connects the JS code to the database
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'Gizmonic',
-  port: '3306',
+  database: 'ecommerce_db',
+  port: '3001',
 })
 
 const app = express();
