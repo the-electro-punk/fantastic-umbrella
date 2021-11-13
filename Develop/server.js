@@ -1,6 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
+const mysql = require('mysql')
 
+// this links to list of products script
 let products = require('./seeds/product-seeds.js')
 
 // this connects the JS code to the database
@@ -8,9 +10,29 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'ecommerce_db',
-  port: '3001',
+  // database: 'ecommerce_db',
+  // port: '3001',
 })
+
+// this connects to mysql and creates a database
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log('connected');
+  connection.query("CREATE DATABASE ecommerce_db", function(err, result) {
+    if (err) throw err;
+    console.log('database created');
+  })
+})
+
+// connection.query(`INSERT INTO ${tableName}(ID, Employee, Position, Department) VALUES (${empID},'${nameEmp}','${position}','${department}')`, (err,rows) => {
+//   if(err) {
+//       throw err
+//   }
+//   else {
+//       console.log('data inserted')
+//       console.log(rows)
+//   }
+// })
 
 const app = express();
 const PORT = process.env.PORT || 3001;
