@@ -1,5 +1,6 @@
 const { Product } = require('../models');
 
+// can't use a for loop to insert data into a table
 const productData = [
   {
     product_name: 'Plain T-Shirt',
